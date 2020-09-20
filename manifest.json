@@ -3,8 +3,11 @@
     "version": "1.0",
     "description": "This will help you finish reading all of your bookmarks and keeping them clean",
     "background": {
-        "scripts": ["background.js"],
+        "scripts": [
+            "background.js"
+        ],
         "persistent": false
     },
+    "permissions": ["storage"],
     "manifest_version": 2
   }
