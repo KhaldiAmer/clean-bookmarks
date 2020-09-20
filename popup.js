@@ -22,7 +22,7 @@ function getRandom(arr, n) {
 chrome.bookmarks.getTree(([treeStructure]) => {
     console.log(treeStructure)
     let arr = flatten(extractChildren(treeStructure), extractChildren).map(x => delete x.children && x);
-    console.log("arr ", arr);
+    arr = arr.filter(i => !!i.url );
     let totalBookmarks = document.getElementById("totalBookmarks");
     let randomFive = document.getElementById("randomFive");
     totalBookmarks.innerHTML = `<h2> Total bookmarks: ${arr.length} </h2>`
