@@ -8,7 +8,7 @@
         ],
         "persistent": false
     },
-    "permissions": ["storage", "declarativeContent"],
+    "permissions": ["storage", "declarativeContent", "activeTab"],
     "page_action": {
         "default_popup": "popup.html",
         "default_icon": {
