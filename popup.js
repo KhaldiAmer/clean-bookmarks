@@ -25,7 +25,7 @@ chrome.bookmarks.getTree(([treeStructure]) => {
     console.log("arr ", arr);
     let totalBookmarks = document.getElementById("totalBookmarks");
     let randomFive = document.getElementById("randomFive");
-    totalBookmarks.innerHTML = `Total bookmarks: ${arr.length} `
+    totalBookmarks.innerHTML = `<h2> Total bookmarks: ${arr.length} </h2>`
     let random5 = getRandom(arr, 5);
     for (let bookmark of random5) {
         let randomEl = document.createElement("div");
@@ -33,7 +33,6 @@ chrome.bookmarks.getTree(([treeStructure]) => {
         randomEl.dataset.id = bookmark.id;
         let link = document.createElement("a");
         let buttonsContainer = document.createElement("div");
-        let visitButton = document.createElement("button");
         let clearButton = document.createElement("button");
         let visitClearButton = document.createElement("button");
         link.href = bookmark.url;
