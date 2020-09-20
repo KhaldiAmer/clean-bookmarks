@@ -1,7 +1,7 @@
 {
     "name": "Clean bookmarks",
     "version": "1.0",
-    "description": "This will help you finish reading all of your bookmarks and keeping them clean",
+    "description": "Clean away bookmarks that don't spark joy!",
     "background": {
         "scripts": [
             "background.js"
