@@ -1,7 +1,7 @@
 let flatten = (children, getChildren, level, parent) => Array.prototype.concat.apply(
-    children.map(x => ({ ...x, level: level || 1, parent: parent || null })), 
+    children.map(x => ({ ...x, level: level || 1, parent: parent || null })),
     children.map(x => flatten(getChildren(x) || [], getChildren, (level || 1) + 1, x.id))
-  );
+);
 
 let extractChildren = x => x.children;
 
@@ -19,7 +19,7 @@ function getRandom(arr, n) {
     return result;
 }
 
-chrome.bookmarks.getTree (([treeStructure]) => {
+chrome.bookmarks.getTree(([treeStructure]) => {
     console.log(treeStructure)
     let arr = flatten(extractChildren(treeStructure), extractChildren).map(x => delete x.children && x);
     console.log("arr ", arr);
@@ -27,12 +27,39 @@ chrome.bookmarks.getTree (([treeStructure]) => {
     let randomFive = document.getElementById("randomFive");
     totalBookmarks.innerHTML = `Total bookmarks: ${arr.length} `
     let random5 = getRandom(arr, 5);
-    for(bookmark of random5) {
+    for (let bookmark of random5) {
         let randomEl = document.createElement("div");
         randomEl.className = "randomElement";
-        randomEl.innerHTML = `
-             <a href="${bookmark.url}"> ${bookmark.title} </a>
-        `
+        randomEl.dataset.id = bookmark.id;
+        let link = document.createElement("a");
+        let buttonsContainer = document.createElement("div");
+        let visitButton = document.createElement("button");
+        let clearButton = document.createElement("button");
+        let visitClearButton = document.createElement("button");
+        link.href = bookmark.url;
+        link.target="_blank"
+        link.style.display = "block";
+        link.textContent = bookmark.title;
+        randomEl.appendChild(link);
+        clearButton.textContent = "Clear";
+        visitClearButton.textContent = "Visit & Clear";
+        clearButton.onclick = (event) => {
+            chrome.bookmarks.remove(bookmark.id, () => console.log("deleted", bookmark))
+            event.target.parentNode.parentNode.parentNode.removeChild(event.target.parentNode.parentNode);
+        }
+        visitClearButton.onclick = (event) => {
+            let a = document.createElement("a");
+            a.href = bookmark.url;
+            a.target = "_blank";
+            a.click();
+            chrome.bookmarks.remove(bookmark.id, () => console.log("deleted", bookmark))
+            event.target.parentNode.parentNode.parentNode.removeChild(event.target.parentNode.parentNode);
+
+        }
+        buttonsContainer.appendChild(clearButton)
+        buttonsContainer.appendChild(visitClearButton)
+        randomEl.appendChild(buttonsContainer);
+
         randomFive.appendChild(randomEl);
     }
 })
