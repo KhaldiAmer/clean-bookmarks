@@ -2,21 +2,69 @@
 <html>
   <head>
     <style>
+      html, body {
+          margin: 0;
+          padding: 0;
+      }
+      #header {
+          position: sticky;
+          top:0;
+          padding: 5px;
+          background: red;
+          color: white;
+      }
       body {
           width: 300px;
       }
       button {
-        height: 30px;
-        width: 30px;
         outline: none;
+        margin-right: 5px;
+        margin-top: 5px;
+        border-radius: 5px;
+        padding: 5px;
+        border: none;
+      }
+      button:hover {
+          background: gainsboro;
+          cursor: pointer;
+      }
+
+      a {
+          color: black;
+          text-decoration: none;
+      }
+
+      .randomElement {
+        padding: 10px;
+        margin: 0 5px;  
+        border-bottom: 1px #eee solid;
+      }
+/*       
+      .randomElement:hover  a {
+      } */
+      .randomElement:hover {
+          background: #fce8e670;
+          box-shadow: 0 5px 11px -10px;
+      }
+      #stats {
+          padding: 5px;
+      }
+      hr {
+          background-color: red;
+      }
+      #randomFive {
+          padding: 5px 0px;
+          border-top: 1px solid black;
       }
     </style>
   </head>
   <body>
-    <h1> Clean bookmarks</h1>
-    <div><label> Pages read today: 5</label></div>
-    <div><label> Bookmarks left : 50</label></div>
-    <div id="totalBookmarks"></div>
+    <div id="header"><h1> Clean bookmarks</h1> <p> Clean away bookmarks that don't spark joy! </p></div>
+    <div id="stats"> 
+        <div><label> Pages read today: 5</label></div>
+        <div><label> Bookmarks left : 50</label></div>
+        <div id="totalBookmarks"></div>
+    </div>
     <div id="randomFive"></div>
   </body>
   <script src="popup.js"></script>
