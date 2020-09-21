@@ -78,4 +78,4 @@ chrome.bookmarks.getTree(([treeStructure]) => {
 //             tabs[0].id,
 //             { code: 'document.body.style.backgroundColor = "' + color + '";' });
 //     });
-// };
+// }; test
