@@ -29,12 +29,12 @@ chrome.bookmarks.getTree(([treeStructure]) => {
     let random5 = getRandom(arr, 5);
     for (let bookmark of random5) {
         let randomEl = document.createElement("div");
-        randomEl.className = "randomElement";
-        randomEl.dataset.id = bookmark.id;
         let link = document.createElement("a");
         let buttonsContainer = document.createElement("div");
         let clearButton = document.createElement("button");
         let visitClearButton = document.createElement("button");
+        randomEl.className = "randomElement";
+        randomEl.dataset.id = bookmark.id;
         link.href = bookmark.url;
         link.target="_blank"
         link.style.display = "block";
@@ -58,7 +58,6 @@ chrome.bookmarks.getTree(([treeStructure]) => {
         buttonsContainer.appendChild(clearButton)
         buttonsContainer.appendChild(visitClearButton)
         randomEl.appendChild(buttonsContainer);
-
         randomFive.appendChild(randomEl);
     }
 })
